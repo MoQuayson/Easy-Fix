@@ -1,0 +1,50 @@
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+}
+
+.logo-name {
+    font-size: 2em;
+    font-weight: bolder;
+}
+
+.auth-section {
+    width: 500px;
+}
+
+.form-control {
+    border-radius: 0% !important;
+}
+
+.form-link {
+    text-decoration: none;
+    /*color: black;*/
+}
+
+
+/*.form-link:hover {
+    color: #1a53ff;
+}*/
+
+#formButton {
+    border-radius: 0% !important;
+    width: 100%
+}
+
+.auth-section .card {
+    border: 2px solid #1a53ff;
+}
+
+.auth-section .card-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
