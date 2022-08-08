@@ -30,7 +30,7 @@ class LoginController extends Controller
         if (Auth::attempt($request->only(['email', 'password']), !is_null($request->input('remember_me')))) {
 
             $user = User::where('email', $request->email)->first();
-            ///$user->createToken('mon-tran api')->plainTextToken;
+            //$user->createToken('api')->plainTextToken;
 
 
             /*if ($this->userHasPermissionCheck('view-dashboard', $user))
@@ -41,10 +41,20 @@ class LoginController extends Controller
                 return redirect(route('incident.index'));
             }*/
 
-            return $user;
-            //return redirect(route('incident.index'));
+            //return $user;
+            return redirect(route('users.index'));
         }
         return back()->with('fail', 'Incorrect Credentials. Try Again')->withInput();
+    }
+
+    public function getToken(Request $request)
+    {
+        if (Auth::attempt($request->only(['email', 'password']), !is_null($request->input('remember_me')))) {
+
+            $user = User::where('email', $request->email)->first();
+            return $user->createToken('mon-tran api')->plainTextToken;
+        }
+        return 'Incorrect Credentials. Try Again';
     }
 
     /**

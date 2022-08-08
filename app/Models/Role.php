@@ -11,6 +11,8 @@ class Role extends SpatieRole
     //use HasFactory;
     use UsesUUID;
     const ADMIN = "admin";
+    const TECHNICIAN = "technician";
+    const CUSTOMER = "customer";
 
     //protected $table = 'roles';
     protected $fillable=[

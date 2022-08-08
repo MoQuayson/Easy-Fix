@@ -4,4 +4,7 @@
 @import 'variables';
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-@import '~bootstrap-icons/font/bootstrap-icons';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import "primereact/resources/themes/lara-light-indigo/theme.css"; //theme
+@import "primereact/resources/primereact.min.css"; //core css
+@import "primeicons/primeicons.css"; //icons

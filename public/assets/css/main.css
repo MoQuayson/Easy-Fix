@@ -1,0 +1,92 @@
+.logo {
+    width: 40px;
+}
+
+#nav {
+    min-height: 80px;
+}
+
+.logo-name {
+    font-size: 1em;
+    font-weight: bolder;
+}
+
+.navbar-brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link,
+.auth-user,
+.auth-user:hover {
+    position: relative;
+    font-size: 1em;
+    color: black;
+}
+
+.nav-link.active {
+    color: #1a53ff !important;
+    font-weight: 600;
+}
+
+.nav-link::after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background-color: #1a53ff;
+    border-radius: 4px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .25s ease;
+}
+
+.nav-link:hover:after {
+    transform: scaleX(1);
+}
+
+.navbar .nav-item:hover .dropdown-menu-hover {
+    display: block;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb a {
+    font-size: 1em;
+    color: rgb(0, 0, 128);
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.breadcrumb-item.active {
+    font-size: 1em;
+    color: rgb(0, 0, 128);
+    font-weight: normal;
+}
+
+.submit-btn {
+    background-color: #0033cc;
+    color: white;
+}
+
+.form-label span {
+    color: red;
+}
+
+#viewBtn,
+#deleteBtn,
+#editBtn {
+    height: 35px;
+    width: 35px;
+    margin-left: 5px;
+}
+
+.p-tooltip-text {
+    font-size: 0.7em;
+}
