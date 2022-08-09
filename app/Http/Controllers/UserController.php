@@ -27,7 +27,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::all();
+        return view('users.create',compact('roles'));
     }
 
     /**
@@ -36,9 +37,23 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        $user = User::create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'telephone'=>$request->email,
+            'password'=>'password'
+        ]);
+
+        if($user)
+        {
+            $user = User::where('email',$request->email)->first();
+            $user->assignRole([$request->input('role')]);
+        }
+
+
+        return redirect()->route('users.index')->with('success', 'New user created.');
     }
 
     /**

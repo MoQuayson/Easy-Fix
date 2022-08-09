@@ -15,7 +15,7 @@ Easy Fix - Edit User Information
 @endsection
 
 @section('content')
-<form action="{{route('users.update',['user'=>$user->id])}}" method="POST" enctype="multipart/form-data">
+<form class="container" action="{{route('users.update',['user'=>$user->id])}}" method="POST" enctype="multipart/form-data">
     <div class="card shadow">
         <div class="card-header bg-white">
             <h5>User Information</h5>
@@ -57,7 +57,7 @@ Easy Fix - Edit User Information
                                 @endforeach
                             @endif
                         </select>
-                        <span class="text-danger">@error('telephone'){{ $message }}@enderror</span>
+                        <span class="text-danger">@error('role'){{ $message }}@enderror</span>
                     </div>
                 </div>
 

@@ -75,6 +75,11 @@
     color: white;
 }
 
+.submit-btn:hover {
+    background-color: #0633ba;
+    color: white;
+}
+
 .form-label span {
     color: red;
 }

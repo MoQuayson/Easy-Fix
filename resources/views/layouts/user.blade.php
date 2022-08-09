@@ -69,7 +69,7 @@
         </div>
     </nav>
 
-    <main class="container">
+    <main>
         <nav class="navbar navbar-expand">
             <div class="container d-flex align-middle justify-content-between">
                 @yield('breadcrumbs')
@@ -90,7 +90,9 @@
             </div>
         </nav>
 
-        @include('partials.alert')
+        <div class="container">
+            @include('partials.alert')
+        </div>
         @yield('content')
     </main>
 

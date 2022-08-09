@@ -3,13 +3,12 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { Tooltip } from 'primereact/tooltip';
+import { SplitButton } from "primereact/splitbutton"
 
 export default function UserTable(){
     const [users,setUsers]=useState([])
+    const [userID,setUserID]= useState('')
 
-    const redirectToEditUrl = ()=>{
-        window.location.href = "/users/"+user_id+"/edit"
-    }
     useEffect(()=>{
         async function fetchUsers(){
             const response = await fetch('/api/users');
@@ -21,13 +20,22 @@ export default function UserTable(){
 
     },[]);
 
-    const actionButtonTemplates=()=>{
+    const redirectToEditUrl = (user_id)=>{
+        window.location.href = "/users/"+user_id+"/edit"
+    }
+
+    const redirectToShowUrl = (user_id)=>{
+        window.location.href = "/users/"+user_id
+    }
+
+    //action templates
+    const actionButtonTemplates=(data)=>{
         return (
            <div className="row">
                 <Button id='viewBtn'  className="p-button-raised p-button-rounded p-button-primary"
-                icon="pi pi-eye" tooltip="View user information" />
+                icon="pi pi-eye" tooltip="View user information" onClick={()=>{redirectToShowUrl(data.user_id)}}/>
                 <Button id='editBtn' className="p-button-raised p-button-rounded p-button-success"
-                icon="bi bi-pencil-square" tooltip="Edit user information" onClick={redirectToEditUrl}/>
+                icon="bi bi-pencil-square" tooltip="Edit user information" onClick={()=>{redirectToEditUrl(data.user_id)}}/>
                 <Button id='deleteBtn'  className="p-button-raised p-button-rounded p-button-danger"
                 icon="pi pi-trash" tooltip="Delete user information" />
            </div>
@@ -35,17 +43,15 @@ export default function UserTable(){
     }
 
 
-
     return (
-        <div>
-            {console.log(users[0])}
+        <div className='container'>
             <div className="card shadow">
-                <DataTable value={users} size="small"  stripedRows responsiveLayout="scroll">
-                    <Column field="user_id" header="Full Name" rowReorderIcon sortable></Column>
+                <DataTable value={users} size="small"  stripedRows responsiveLayout="scroll"    >
+                    <Column field="fullname" header="Full Name" rowReorderIcon sortable style={{'width':'30%'}}></Column>
                     <Column field="email" header="Email" sortable></Column>
                     <Column field="telephone" header="Telephone" sortable></Column>
                     <Column field="role" header="Role" sortable></Column>
-                    <Column header="Actions" body={actionButtonTemplates()}></Column>
+                    <Column field='Actions' header="Actions" body={actionButtonTemplates} style={{'width':'10%'}}></Column>
                 </DataTable>
             </div>
         </div>

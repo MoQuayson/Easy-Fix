@@ -28,7 +28,7 @@ class UserRequest extends FormRequest
             'name' => ['required','min:10','max:255'],
             'email' => ['required','email'],
             'telephone'=>['required','min:8','max:20'],
-            'role'=>'required'
+            'role'=>['required','min:3']
         ];
     }
 

@@ -1,6 +1,6 @@
 import React,{Component} from "react";
 import ReactDOM from 'react-dom';
-import UserTable from './user-table'
+import UserTable from './UserTable'
 
 class User extends Component{
 
