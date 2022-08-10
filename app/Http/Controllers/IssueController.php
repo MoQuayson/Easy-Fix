@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\IssueRequest;
+use App\Models\Issue;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IssueController extends Controller
 {
@@ -13,7 +16,7 @@ class IssueController extends Controller
      */
     public function index()
     {
-        //
+        return view('issues.index');
     }
 
     /**
@@ -23,7 +26,7 @@ class IssueController extends Controller
      */
     public function create()
     {
-        //
+        return view('issues.create');
     }
 
     /**
@@ -32,9 +35,23 @@ class IssueController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(IssueRequest $request)
     {
-        //
+        $user = Auth::user();
+        $issue = $user->Issues()->create([
+            'gadget_name'=>$request->gadget_name,
+            'gadget_type'=>$request->gadget_type,
+            'description'=>$request->description,
+            'location'=>$request->location,
+            'issue_assigned_to'=>null,
+        ]);
+
+        if($issue)
+        {
+            return redirect()->route('issues.index')->with('success', 'Your issue has been sent.
+            A technician will respond to you shortly.');
+        }
+
     }
 
     /**
@@ -45,7 +62,7 @@ class IssueController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -56,7 +73,8 @@ class IssueController extends Controller
      */
     public function edit($id)
     {
-        //
+        $issue = Issue::where('id',$id)->first();
+        return view('issues.edit', compact('issue'));
     }
 
     /**
@@ -66,9 +84,23 @@ class IssueController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(IssueRequest $request, $id)
     {
-        //
+        if(Issue::where('id',$id)->exists())
+        {
+            $issue = Issue::where('id',$id)->update([
+                'gadget_name'=>$request->gadget_name,
+                'gadget_type'=>$request->gadget_type,
+                'description'=>$request->description,
+                'location'=>$request->location,
+
+            ]);
+
+            if($issue)
+            {
+                return redirect()->route('issues.index')->with('success', 'Issue has been updated.');
+            }
+        }
     }
 
     /**

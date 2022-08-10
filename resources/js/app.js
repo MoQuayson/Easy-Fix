@@ -17,3 +17,4 @@ import 'bootstrap'
 
 //require('./components/Example');
 import './components/user/user.jsx';
+import './components/issue/Issue.jsx';

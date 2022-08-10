@@ -58,14 +58,14 @@
 }
 
 .breadcrumb a {
-    font-size: 1em;
+    font-size: 1.1em;
     color: rgb(0, 0, 128);
     font-weight: 400;
     text-decoration: none;
 }
 
 .breadcrumb-item.active {
-    font-size: 1em;
+    font-size: 1.1em;
     color: rgb(0, 0, 128);
     font-weight: normal;
 }

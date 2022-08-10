@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class IssueRequest extends FormRequest
 {
@@ -13,18 +14,33 @@ class IssueRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, mixed>
+     * @return array
      */
     public function rules()
     {
         return [
-            //
+            'gadget_name' => ['required','min:5','max:255'],
+            'gadget_type' => ['required','min:5','max:255'],
+            'description' => ['required','min:10'],
+            'location'=>['nullable','min:3','max:120'],
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            '*.required' => 'This field is required',
         ];
     }
 }

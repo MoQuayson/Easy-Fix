@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\APIControllers\IssueController;
 use App\Http\Controllers\APIControllers\UserController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Http\Request;
@@ -21,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('users', UserController::class);
+Route::resource('issues', IssueController::class);
 
 Route::post('auth/sign-in', [LoginController::class,'getToken']);
 

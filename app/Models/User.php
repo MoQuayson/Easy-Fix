@@ -51,12 +51,12 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
     }
 
-    public function Issue()
+    public function Issues()
     {
         return $this->hasMany(Issue::class);
     }
 
-    public function Solution()
+    public function Solutions()
     {
         return $this->hasMany(Solution::class);
     }
