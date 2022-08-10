@@ -86,7 +86,8 @@
 
 #viewBtn,
 #deleteBtn,
-#editBtn {
+#editBtn,
+#solutionBtn {
     height: 35px;
     width: 35px;
     margin-left: 5px;

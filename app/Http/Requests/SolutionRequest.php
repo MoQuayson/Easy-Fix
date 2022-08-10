@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class SolutionRequest extends FormRequest
 {
@@ -13,18 +14,32 @@ class SolutionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, mixed>
+     * @return array
      */
     public function rules()
     {
         return [
-            //
+            'issue_id' => ['required','uuid'],
+            'description' => ['required','min:10'],
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            '*.required' => 'This field is required',
+            '*.uuid'=>'This field must be a valid universally unique identifier'
         ];
     }
 }

@@ -20,4 +20,10 @@ class Solution extends Model
         'description',
         'completion_date',
     ];
+
+    public function Issue()
+    {
+return $this->hasOne(Issue::class);
+    }
+
 }

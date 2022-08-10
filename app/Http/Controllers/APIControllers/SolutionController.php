@@ -15,7 +15,13 @@ class SolutionController extends Controller
      */
     public function index()
     {
-        //$solution = Solution::where
+        $solution = Solution::join('issues','issues.id','=','solutions.issue_id')
+        ->join('users','users.id','=','issues.user_id')
+        ->select('solutions.id as solution_id','issues.id as issue_id','issues.description as issue_description',
+        'solutions.description as solution_description','users.name as fullname')
+        ->get();
+
+        return response()->json($solution);
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\APIControllers\SolutionController;
 use App\Http\Controllers\APIControllers\IssueController;
 use App\Http\Controllers\APIControllers\UserController;
 use App\Http\Controllers\LoginController;
@@ -21,11 +22,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('users', UserController::class);
-Route::resource('issues', IssueController::class);
 
 Route::post('auth/sign-in', [LoginController::class,'getToken']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    //Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('issues', IssueController::class);
+    Route::resource('solutions', SolutionController::class);
 });

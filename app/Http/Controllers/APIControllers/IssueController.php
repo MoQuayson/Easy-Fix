@@ -4,7 +4,9 @@ namespace App\Http\Controllers\APIControllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Issue;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IssueController extends Controller
 {
@@ -16,10 +18,17 @@ class IssueController extends Controller
     public function index()
     {
         $issues = Issue::join('users','users.id','=','issues.user_id')
-        ->select('issues.id as issue_id','users.name','email','telephone','gadget_name','gadget_type','description','location')
+        ->select('issues.id as issue_id','users.id as user_id','users.name','email','telephone','gadget_name',
+        'gadget_type','description','location')
         ->get();
 
-        return response()->json($issues);
+
+        //$issues = $this->addUserPermission($issues);
+        $data = [
+            'issues'=>$issues,
+            'can_provide_solution'=>$this->checkPermission(),
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -86,5 +95,46 @@ class IssueController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function checkPermission()
+    {
+        $user = Auth::user();
+        $user = User::where('id',$user->id)->first();
+        $has_permission = $user->hasAnyPermission(['create-solution', 'update-solution', 'delete-solution']);
+
+        return $has_permission;
+    }
+
+    public function addUserPermission($issues)
+    {
+        if(count($issues) < 0)
+        {
+            return $issues;
+        }
+
+        else{
+            foreach($issues as $issue)
+            {
+                $user = User::where('id',$issue->user_id)->first();
+
+                $has_permission = $user->hasAnyPermission(['create-solution', 'update-solution', 'delete-solution']);
+
+                if($has_permission)
+                {
+                    $arr = array('can_provide_solution'=>true);
+                    //array_push($issue,$arr);
+                    $issue['can_provide_solution'] = true;
+                }
+                else{
+                    $arr = array('can_provide_solution'=>false);
+                    //array_push($issue,$arr);
+                    $issue['can_provide_solution'] = false;
+                }
+
+            }
+
+            return $issues;
+        }
     }
 }

@@ -7,12 +7,15 @@ import { SplitButton } from "primereact/splitbutton"
 
 export default function IssueTable(){
     const [issues,setIssues]=useState([])
+    const [canProvideSolution,setCanProvideSolution] = useState(false);
 
     useEffect(()=>{
         async function fetchIssues(){
             const response = await fetch('/api/issues');
             const fetchedIssues = await response.json(response);
-            setIssues(fetchedIssues);
+            const fetchedPermission = fetchedIssues['can_provide_solution'];
+            setIssues(fetchedIssues['issues']);
+            setCanProvideSolution(fetchedPermission);
         }
 
         fetchIssues();
@@ -27,6 +30,11 @@ export default function IssueTable(){
         window.location.href = "/issues/"+issue_id
     }
 
+    const redirectToSolutionUrl=(issue_id)=>{
+        //Get /issues/{issue_id}/solution/create
+        window.location.href = "/issues/"+issue_id+"/solution/create";
+    }
+
     //action templates
     const actionButtonTemplates=(data)=>{
         return (
@@ -36,7 +44,13 @@ export default function IssueTable(){
                 <Button id='editBtn' className="p-button-raised p-button-rounded p-button-success"
                 icon="bi bi-pencil-square" tooltip="Edit issue" onClick={()=>{redirectToEditUrl(data.issue_id)}}/>
                 <Button id='deleteBtn'  className="p-button-raised p-button-rounded p-button-danger"
-                icon="pi pi-trash" tooltip="Delete issue" />
+                icon="pi pi-trash" tooltip="Delete issue"/>
+
+               {
+                    canProvideSolution ?
+                    <Button id='solutionBtn'  className="p-button-raised p-button-rounded p-button-secondary"
+                    icon="bi bi-list-task" tooltip="provide solution" onClick={()=>{redirectToSolutionUrl(data.issue_id)}} />: null
+               }
            </div>
         )
     }

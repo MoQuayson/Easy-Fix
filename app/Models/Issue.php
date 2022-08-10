@@ -29,9 +29,4 @@ class Issue extends Model
     {
         return $this->hasOne(Solution::class);
     }
-
-    public function Users()
-    {
-        return $this->hasMany(User::class);
-    }
 }

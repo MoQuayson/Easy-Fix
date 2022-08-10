@@ -14,7 +14,7 @@ class Solution extends Component{
 }
 export default Solution;
 
-if(document.getElementById('SolutionSection'))
+if(document.getElementById('solutionSection'))
 {
     ReactDOM.render(<Solution />, document.getElementById('solutionSection'));
 }

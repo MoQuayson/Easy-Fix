@@ -31,6 +31,23 @@ Route::resource('auth/register', RegisterController::class);
 Route::resource('auth/sign-out', SignOutController::class);
 
 Route::middleware(['auth'])->group(function () {
+
+    /*Route::get('/issues/{issue_id}/solution/create',[SolutionController::class,'createSolution']);
+    Route::post('/issues/{issue_id}/solution',[SolutionController::class,'storeSolution'])->name('solution.post');
+
+    Route::get('/issues/{issue_id}/solution/{solution_id}/edit',[SolutionController::class,'editSolution']);
+    Route::get('/issues/{issue_id}/solution/{solution_id}',[SolutionController::class,'showSolution']);*/
+
+Route::prefix('/issues/{issue_id}')->group(function () {
+    Route::get('/solution/create',[SolutionController::class,'createSolution']);
+    Route::post('/solution',[SolutionController::class,'storeSolution'])->name('solution.post');
+
+    Route::get('/solution/{solution_id}/edit',[SolutionController::class,'editSolution']);
+    Route::get('/solution/{solution_id}',[SolutionController::class,'showSolution']);
+
+Route::put('/solution/{solution_id}', [SolutionController::class,'updateSolution'])->name('solution.put');
+});
+
     Route::resource('dashboard', DashboardController::class);
     Route::resource('issues', IssueController::class);
     Route::resource('solutions', SolutionController::class);
