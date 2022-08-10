@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\IssueRequest;
 use App\Models\Issue;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -62,7 +63,10 @@ class IssueController extends Controller
      */
     public function show($id)
     {
+        $issue = Issue::where('id',$id)->first();
+        $user = User::where('id',$issue->user_id)->first();
 
+        return view('issues.show',compact('issue','user'));
     }
 
     /**

@@ -42,7 +42,7 @@ class UserController extends Controller
         $user = User::create([
             'name'=>$request->name,
             'email'=>$request->email,
-            'telephone'=>$request->email,
+            'telephone'=>$request->telephone,
             'password'=>'password'
         ]);
 
@@ -64,7 +64,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::where('id',$id)->first();
+        return view('users.show',compact('user'));
     }
 
     /**

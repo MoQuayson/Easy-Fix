@@ -78,7 +78,6 @@ Easy Fix - Edit Issue
 <script>
     $(document).ready(function () {
         $('#gadget_type').val($('#_gadget_type').val()).change();
-        //$('#gender').val($('#_gender').val()).change();
     });
 </script>
 @endsection
