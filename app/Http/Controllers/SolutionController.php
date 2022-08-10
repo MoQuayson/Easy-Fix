@@ -13,7 +13,7 @@ class SolutionController extends Controller
      */
     public function index()
     {
-        //
+        return view('solutions.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class SolutionController extends Controller
      */
     public function create()
     {
-        //
+        return view('solutions.create');
     }
 
     /**

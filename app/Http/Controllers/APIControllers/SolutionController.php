@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\APIControllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Solution;
 use Illuminate\Http\Request;
 
 class SolutionController extends Controller
@@ -14,7 +15,7 @@ class SolutionController extends Controller
      */
     public function index()
     {
-        //
+        //$solution = Solution::where
     }
 
     /**

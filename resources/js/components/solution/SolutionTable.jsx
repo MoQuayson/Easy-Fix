@@ -5,7 +5,7 @@ import { Button } from 'primereact/button';
 import { Tooltip } from 'primereact/tooltip';
 import { SplitButton } from "primereact/splitbutton"
 
-export default function IssueTable(){
+export default function SolutionTable(){
     const [issues,setIssues]=useState([])
 
     useEffect(()=>{
