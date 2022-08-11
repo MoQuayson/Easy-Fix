@@ -10,6 +10,13 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:list-user|create-user|update-user|delete-user', ['only' => ['index','store']]);
+        $this->middleware('permission:create-user', ['only' => ['create','store']]);
+        $this->middleware('permission:update-user', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete-user', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *

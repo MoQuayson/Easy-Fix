@@ -40,13 +40,17 @@
                         <a class="nav-link active" href="{{ route('issues.index') }}">Gadget Issues</a>
                     </li>
 
+                    @can('create-solution')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('solutions.index') }}">Gadget Solutions</a>
                     </li>
+                    @endcan
 
+                    @can('create-user')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('users.index') }}">Users</a>
                     </li>
+                    @endcan
                 </ul>
 
                 <div class="dropdown">

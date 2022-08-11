@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Auth;
 
 class IssueController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:list-issue|create-issue|update-issue|delete-issue', ['only' => ['index','store']]);
+        $this->middleware('permission:create-issue', ['only' => ['create','store']]);
+        $this->middleware('permission:update-issue', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete-issue', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *

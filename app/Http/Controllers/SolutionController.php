@@ -10,6 +10,14 @@ use Illuminate\Http\Request;
 
 class SolutionController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:list-solution|create-solution|update-solution|delete-solution', ['only' => ['index','store']]);
+        $this->middleware('permission:create-solution', ['only' => ['create','store']]);
+        $this->middleware('permission:update-solution', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete-solution', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
