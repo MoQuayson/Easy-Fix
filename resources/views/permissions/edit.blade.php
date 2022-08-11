@@ -1,22 +1,24 @@
-@extends('layouts.Permission')
+@extends('layouts.permission')
 @section('title')
-Update Permission | Permissions | User Management | Montran Management
+Easy Fix - New Permission
 @endsection
 
 @section('breadcrumbs')
-<div>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('permissions.index')}}">Permissions</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Update Permission</li>
-    </ol>
-</div>
+<nav class="navbar navbar-expand p-2">
+    <div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('roles.index')}}">Permissions</a></li>
+            <li class="breadcrumb-item active" aria-current="page">New Permission</li>
+        </ol>
+    </div>
+</nav>
 @endsection
 
 @section('content')
 <div class="container">
     <div class="card shadow-sm">
-        <div class="card-header bg-navy text-white">
-            <h5 class="d-flex assign-middle">Edit Permission Form</h5>
+        <div class="card-header bg-white">
+            <h6>Edit Permission Form</h5>
         </div>
         <div class="card-body">
             <form action="{{route('permissions.update',['permission'=>$permission->id])}}" method="POST" enctype="multipart/form-data">
@@ -32,7 +34,7 @@ Update Permission | Permissions | User Management | Montran Management
 
                     <hr>
                     <div class="col mb-1 float-end">
-                        <button type="submit" class="btn submitBtn">Save Changes</button>
+                        <button type="submit" class="btn submit-btn">Save Changes</button>
                         <a class="btn btn-danger" href="{{route('permissions.index')}}">Cancel</a>
                     </div>
                 </div>

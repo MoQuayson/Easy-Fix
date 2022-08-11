@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PermissionRequest;
+use App\Models\Permission;
+use Exception;
 use Illuminate\Http\Request;
 
 class PermissionController extends Controller
@@ -13,7 +16,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
+        return view('permissions.index');
     }
 
     /**
@@ -23,7 +26,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        //
+        return view('permissions.create');
     }
 
     /**
@@ -32,9 +35,16 @@ class PermissionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PermissionRequest $request)
     {
-        //
+        try {
+            Permission::create(['name' => $request->input('name')]);
+
+        return redirect()->route('permissions.index')->with('success', 'Permission has been created.');
+        } catch (Exception $ex) {
+            return redirect()->back()->with('fail', $ex->getMessage());
+        }
+
     }
 
     /**
@@ -45,7 +55,9 @@ class PermissionController extends Controller
      */
     public function show($id)
     {
-        //
+        $permission = Permission::find($id);
+
+        return view('permissions.show', compact('permission'));
     }
 
     /**
@@ -56,7 +68,9 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $permission = Permission::find($id);
+
+        return view('permissions.edit', compact('permission'));
     }
 
     /**
@@ -66,9 +80,18 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PermissionRequest $request, $id)
     {
-        //
+        try {
+            $permission = Permission::find($id);
+            $permission->name = $request->input('name');
+            $permission->save();
+
+            return redirect()->route('permissions.index') ->with('success', 'Permission has been updated.');
+        } catch (Exception $ex) {
+            return redirect()->back()->with('fail', $ex->getMessage());
+        }
+
     }
 
     /**
@@ -79,6 +102,14 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            Permission::where('id', $id)->delete();
+            session()->flash('success', 'Permission has been deleted.');
+            return response()->json('success');
+
+        } catch (Exception $ex) {
+            session()->flash('fail', $ex->getMessage());
+            return response()->json('error');
+        }
     }
 }

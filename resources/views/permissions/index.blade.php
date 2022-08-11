@@ -1,6 +1,6 @@
 @extends('layouts.permission')
 @section('title')
-Permissions | User Management | Montran Management
+Easy Fix - Permission
 @endsection
 @section('breadcrumbs')
 <nav class="navbar navbar-expand p-2">
@@ -12,5 +12,5 @@ Permissions | User Management | Montran Management
 </nav>
 @endsection
 @section('content')
-    <div id="permissions"></div>
+    <div id="permissionSection"></div>
 @endsection

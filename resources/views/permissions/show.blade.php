@@ -1,22 +1,24 @@
 @extends('layouts.permission')
 @section('title')
-Permission Information | Permissions | Users Management | Montran Management
+Easy Fix - New Permission
 @endsection
 
 @section('breadcrumbs')
-<div>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('permissions.index')}}">Permissions</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Permission Information</li>
-    </ol>
-</div>
+<nav class="navbar navbar-expand p-2">
+    <div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('roles.index')}}">Permissions</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Permission Information</li>
+        </ol>
+    </div>
+</nav>
 @endsection
 
 @section('content')
 <div class="container">
     <div class="card shadow mb-3">
-        <div class="card-header bg-navy text-white">
-            <h5>Permission Information </h5>
+        <div class="card-header bg-white">
+            <h6>Permission Information </h6>
         </div>
 
         <div class="card-body">

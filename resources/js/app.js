@@ -19,3 +19,5 @@ import 'bootstrap'
 import './components/user/user.jsx';
 import './components/issue/Issue.jsx';
 import './components/solution/Solution';
+import './components/role/Role';
+import './components/permission/Permission';

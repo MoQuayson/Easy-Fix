@@ -30,19 +30,8 @@ class LoginController extends Controller
         if (Auth::attempt($request->only(['email', 'password']), !is_null($request->input('remember_me')))) {
 
             $user = User::where('email', $request->email)->first();
-            //$user->createToken('api')->plainTextToken;
 
-
-            /*if ($this->userHasPermissionCheck('view-dashboard', $user))
-            {
-                return redirect(route('dashboard.index'));
-            }
-            else{
-                return redirect(route('incident.index'));
-            }*/
-
-            //return $user;
-            return redirect(route('users.index'));
+            return redirect(route('issues.index'));
         }
         return back()->with('fail', 'Incorrect Credentials. Try Again')->withInput();
     }

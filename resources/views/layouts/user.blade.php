@@ -40,13 +40,41 @@
                         <a class="nav-link" href="{{ route('issues.index') }}">Gadget Issues</a>
                     </li>
 
+                    @can('create-solution')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('solutions.index') }}">Gadget Solutions</a>
+                        <a class="nav-link active" href="{{ route('solutions.index') }}">Gadget Solutions</a>
                     </li>
+                    @endcan
 
+                    @can('create-user')
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ route('users.index') }}">Users</a>
                     </li>
+                    @endcan
+
+                    @can('create-role')
+                    <li class="nav-item dropdown">
+                        <a class="nav-link  d-flex align-items-center gap-1" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Authorization
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-hover dropdown-menu-macos mx-0 shadow"
+                            aria-labelledby="navbarDropdownMenuLink">
+
+
+                            <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                    href="{{ route('roles.index') }}">
+                                    Roles
+                            </a>
+
+                            <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                    href="{{ route('permissions.index') }}">
+                                    Permissions
+                            </a>
+
+                        </ul>
+                    </li>
+                    @endcan
                 </ul>
 
                 <div class="dropdown">

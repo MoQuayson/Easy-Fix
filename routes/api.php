@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\APIControllers\SolutionController;
 use App\Http\Controllers\APIControllers\IssueController;
+use App\Http\Controllers\APIControllers\PermissionController;
+use App\Http\Controllers\APIControllers\RoleController;
 use App\Http\Controllers\APIControllers\UserController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Http\Request;
@@ -29,4 +31,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('issues', IssueController::class);
     Route::resource('solutions', SolutionController::class);
+    Route::resource('roles', RoleController::class);
+    Route::resource('permissions', PermissionController::class);
 });

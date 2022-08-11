@@ -1,6 +1,6 @@
 @extends('layouts.role')
 @section('title')
-Roles | User Management | Montran Management
+Easy Fix - Roles
 @endsection
 @section('breadcrumbs')
 <nav class="navbar navbar-expand p-2">
@@ -12,5 +12,5 @@ Roles | User Management | Montran Management
 </nav>
 @endsection
 @section('content')
-    <div id="roles"></div>
+    <div id="roleSection"></div>
 @endsection

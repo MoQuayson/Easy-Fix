@@ -1,22 +1,25 @@
 @extends('layouts.role')
 @section('title')
-Update Role | Roles | User Management | Montran Management
+Easy Fix - Edit Role
 @endsection
 
 @section('breadcrumbs')
-<div>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('roles.index')}}">Roles</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Update Department</li>
-    </ol>
-</div>
+<nav class="navbar navbar-expand p-2">
+    <div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('roles.index')}}">Roles</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Edit Role</li>
+        </ol>
+    </div>
+</nav>
 @endsection
+
 
 @section('content')
 <div class="container">
     <div class="card shadow-sm">
-        <div class="card-header bg-navy text-white">
-            <h5 class="d-flex assign-middle">Edit Role Form</h5>
+        <div class="card-header bg-white">
+            <h6 class="d-flex assign-middle">Role Form</h6>
         </div>
         <div class="card-body">
             <form action="{{route('roles.update',['role'=>$role->id])}}" method="POST" enctype="multipart/form-data">
@@ -29,7 +32,7 @@ Update Role | Roles | User Management | Montran Management
                         <input type="text" class="form-control" id="name" name="name" value="{{$role->name}}" placeholder="ex. user">
                         <span class="text-danger">@error('name'){{$message}}@enderror</span>
                     </div>
-    
+
                     <hr>
                     <div class="col mt-3 mb-3">
                         <label class="form-label h5">Permissions <span>*</span></label>
@@ -52,13 +55,13 @@ Update Role | Roles | User Management | Montran Management
 
                         @endforeach
                         </div>
-    
+
                         <span class="text-danger">@error('permission'){{$message}}@enderror</span>
                     </div>
 
                     <hr>
                     <div class="col mb-1 float-end">
-                        <button type="submit" class="btn submitBtn">Save Changes</button>
+                        <button type="submit" class="btn submit-btn">Save Changes</button>
                         <a class="btn btn-danger" href="{{route('roles.index')}}">Cancel</a>
                     </div>
                 </div>
