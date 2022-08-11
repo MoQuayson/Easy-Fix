@@ -25,7 +25,8 @@ class SolutionController extends Controller
      */
     public function index()
     {
-        return view('solutions.index');
+        $issue_id = '1111111111';
+        return view('solutions.index',compact('issue_id'));
     }
 
     /**

@@ -39,7 +39,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/issues/{issue_id}/solution/{solution_id}',[SolutionController::class,'showSolution']);*/
 
 Route::prefix('/issues/{issue_id}')->group(function () {
-    Route::get('/solution/create',[SolutionController::class,'createSolution']);
+    Route::get('/solution/create',[SolutionController::class,'createSolution'])->name('create.solution');
     Route::post('/solution',[SolutionController::class,'storeSolution'])->name('solution.post');
 
     Route::get('/solution/{solution_id}/edit',[SolutionController::class,'editSolution']);

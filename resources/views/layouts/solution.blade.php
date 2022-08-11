@@ -73,19 +73,12 @@
         <nav class="navbar navbar-expand">
             <div class="container d-flex align-middle justify-content-between">
                 @yield('breadcrumbs')
-                @if (!Request::is('solutions/create*'))
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="{{route('solutions.create')}}" class="btn submit-btn">New Solutions</a>
-                        </li>
-                    </ul>
-
-                @else
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="{{route('solutions.index')}}" class="btn submit-btn">View All Solutions</a>
-                        </li>
-                    </ul>
+                @if (!Request::is('solutions*'))
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="{{route('solutions.index')}}" class="btn submit-btn">View All Solutions</a>
+                    </li>
+                </ul>
                 @endif
             </div>
         </nav>
