@@ -48,7 +48,9 @@ export default function RoleTable(){
     return (
         <div className='container'>
             <div className="card shadow">
-                <DataTable value={roles} size="small"  stripedRows responsiveLayout="scroll">
+                <DataTable value={roles} size="small"  stripedRows responsiveLayout="scroll" paginator
+                paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" rows={10} rowsPerPageOptions={[10,20,50]}>
                     <Column field="name" header="Name" sortable></Column>
                     <Column field='Actions' header='Actions' body={actionButtonTemplates} style={{'width':'10%'}}></Column>
                 </DataTable>

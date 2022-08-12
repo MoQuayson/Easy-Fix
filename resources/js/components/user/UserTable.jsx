@@ -46,8 +46,10 @@ export default function UserTable(){
     return (
         <div className='container'>
             <div className="card shadow">
-                <DataTable value={users} size="small"  stripedRows responsiveLayout="scroll"    >
-                    <Column field="fullname" header="Full Name" rowReorderIcon sortable style={{'width':'30%'}}></Column>
+                <DataTable value={users} size="small"  stripedRows responsiveLayout="scroll" paginator
+                paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" rows={10} rowsPerPageOptions={[10,20,50]}>
+                    <Column field="fullname" header="Full Name" rowReorderIcon sortable style={{'width':'30%'}} ></Column>
                     <Column field="email" header="Email" sortable></Column>
                     <Column field="telephone" header="Telephone" sortable></Column>
                     <Column field="role" header="Role" sortable></Column>

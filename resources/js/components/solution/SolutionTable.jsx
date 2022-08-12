@@ -49,7 +49,9 @@ export default function SolutionTable(){
     return (
         <div className='container'>
             <div className="card shadow">
-                <DataTable value={solutions} size="small"  stripedRows responsiveLayout="scroll">
+                <DataTable value={solutions} size="small"  stripedRows responsiveLayout="scroll" paginator
+                paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" rows={10} rowsPerPageOptions={[10,20,50]}>
                     <Column field="fullname" header="Full Name" sortable style={{'minWidth':'15%'}}></Column>
                     <Column field="issue_description" header="Issue" sortable style={{'minWidth':'20%'}}></Column>
                     <Column field="solution_description" header="Solution" sortable style={{'minWidth':'50%'}}></Column>

@@ -44,11 +44,16 @@ export default function PermissionTable(){
         )
     }
 
+    const paginatorLeft = <Button type="button" icon="pi pi-refresh" className="p-button-text" />;
+    const paginatorRight = <Button type="button" icon="pi pi-cloud" className="p-button-text" />;
+
     //display table
     return (
         <div className='container'>
-            <div className="card shadow">
-                <DataTable value={permissions} size="small"  stripedRows responsiveLayout="scroll">
+            <div className="card shadow mb-4">
+                <DataTable value={permissions} size="small"  stripedRows paginator responsiveLayout="scroll"
+                paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" rows={10} rowsPerPageOptions={[10,20,50]}>
                     <Column field="name" header="Name" sortable></Column>
                     <Column field='Actions' header='Actions' body={actionButtonTemplates} style={{'width':'10%'}}></Column>
                 </DataTable>

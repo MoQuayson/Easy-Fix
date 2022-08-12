@@ -100,3 +100,7 @@
 .show-table {
     width: 80%;
 }
+
+.p-paginator * {
+    font-size: 0.9em!important;
+}

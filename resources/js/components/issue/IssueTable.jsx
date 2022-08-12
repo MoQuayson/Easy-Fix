@@ -59,7 +59,9 @@ export default function IssueTable(){
     return (
         <div className='container'>
             <div className="card shadow">
-                <DataTable value={issues} size="small"  stripedRows responsiveLayout="scroll">
+                <DataTable value={issues} size="small"  stripedRows responsiveLayout="scroll" paginator
+                paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" rows={10} rowsPerPageOptions={[10,20,50]}>
                     <Column field="name" header="Full Name" sortable></Column>
                     <Column field="email" header="Email" sortable></Column>
                     <Column field="telephone" header="Telephone" sortable></Column>

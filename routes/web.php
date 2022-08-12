@@ -29,15 +29,11 @@ Route::get('/', function () {
 Route::resource('auth/sign-in', LoginController::class);
 Route::resource('auth/register', RegisterController::class);
 Route::resource('auth/sign-out', SignOutController::class);
+Route::get('/test', function () {
+return view('test');
+});
 
 Route::middleware(['auth'])->group(function () {
-
-    /*Route::get('/issues/{issue_id}/solution/create',[SolutionController::class,'createSolution']);
-    Route::post('/issues/{issue_id}/solution',[SolutionController::class,'storeSolution'])->name('solution.post');
-
-    Route::get('/issues/{issue_id}/solution/{solution_id}/edit',[SolutionController::class,'editSolution']);
-    Route::get('/issues/{issue_id}/solution/{solution_id}',[SolutionController::class,'showSolution']);*/
-
 Route::prefix('/issues/{issue_id}')->group(function () {
     Route::get('/solution/create',[SolutionController::class,'createSolution'])->name('create.solution');
     Route::post('/solution',[SolutionController::class,'storeSolution'])->name('solution.post');
