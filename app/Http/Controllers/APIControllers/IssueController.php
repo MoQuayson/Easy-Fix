@@ -17,18 +17,40 @@ class IssueController extends Controller
      */
     public function index()
     {
-        $issues = Issue::join('users','users.id','=','issues.user_id')
-        ->select('issues.id as issue_id','users.id as user_id','users.name','email','telephone','gadget_name',
-        'gadget_type','description','location')
-        ->get();
+        //check if user is an admin or technician or customer
+
+        if($this->checkPermission())
+        {
+            $issues = Issue::join('users','users.id','=','issues.user_id')
+            ->select('issues.id as issue_id','users.id as user_id','users.name','email','telephone','gadget_name',
+            'gadget_type','description','location')
+            ->get();
 
 
-        //$issues = $this->addUserPermission($issues);
-        $data = [
-            'issues'=>$issues,
-            'can_provide_solution'=>$this->checkPermission(),
-        ];
-        return response()->json($data);
+            //$issues = $this->addUserPermission($issues);
+            $data = [
+                'issues'=>$issues,
+                'can_provide_solution'=>$this->checkPermission(),
+            ];
+            return response()->json($data);
+        }
+
+        else{
+            $issues = Issue::join('users','users.id','=','issues.user_id')
+            ->where('users.id',Auth::user()->id)
+            ->select('issues.id as issue_id','users.id as user_id','users.name','email','telephone','gadget_name',
+            'gadget_type','description','location')
+            ->get();
+
+
+            //$issues = $this->addUserPermission($issues);
+            $data = [
+                'issues'=>$issues,
+                'can_provide_solution'=>$this->checkPermission(),
+            ];
+            return response()->json($data);
+        }
+
     }
 
     /**

@@ -122,6 +122,8 @@ class IssueController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $issue = Issue::where('id',$id)->delete();
+        session()->flash('success', 'Issue has been deleted.');
+        return response()->json('success');
     }
 }

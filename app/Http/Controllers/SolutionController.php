@@ -6,6 +6,7 @@ use App\Http\Requests\SolutionRequest;
 use App\Models\Issue;
 use App\Models\Solution;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 
 class SolutionController extends Controller
@@ -92,7 +93,15 @@ class SolutionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            Solution::where('id', $id)->delete();
+            session()->flash('success', 'Solution has been deleted.');
+            return response()->json('success');
+
+        } catch (Exception $ex) {
+            session()->flash('fail', $ex->getMessage());
+            return response()->json('error');
+        }
     }
 
     public function createSolution($issue_id)

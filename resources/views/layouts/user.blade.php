@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="icon" href="{{asset('assets/images/logo.png')}}">
     <title>@yield('title')</title>
 
@@ -42,7 +43,7 @@
 
                     @can('create-solution')
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('solutions.index') }}">Gadget Solutions</a>
+                        <a class="nav-link" href="{{ route('solutions.index') }}">Gadget Solutions</a>
                     </li>
                     @endcan
 

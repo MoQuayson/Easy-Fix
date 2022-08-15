@@ -3,7 +3,8 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { Tooltip } from 'primereact/tooltip';
-import { SplitButton } from "primereact/splitbutton"
+import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
+import axios from 'axios';
 
 export default function IssueTable(){
     const [issues,setIssues]=useState([])
@@ -22,6 +23,19 @@ export default function IssueTable(){
 
     },[]);
 
+    const deleteConfirm = (issue_id) => {
+        confirmDialog({
+            message: 'Do you want to delete this record?',
+            header: 'Delete Confirmation',
+            icon: 'pi pi-info-circle',
+            acceptClassName: 'p-button-danger',
+            accept:()=>{
+                deleteUrl(issue_id)
+            },
+        });
+    };
+
+
     const redirectToEditUrl = (issue_id)=>{
         window.location.href = "/issues/"+issue_id+"/edit"
     }
@@ -35,6 +49,30 @@ export default function IssueTable(){
         window.location.href = "/issues/"+issue_id+"/solution/create";
     }
 
+    const deleteUrl=(issue_id)=>{
+        var url =  '/issues/' + issue_id;
+        var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        axios({
+                method: "delete",
+                url: url,
+                responseType:JSON,
+                headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json, text-plain, */*",
+                "X-Requested-With": "XMLHttpRequest",
+                "X-CSRF-TOKEN": token
+                }
+            })
+            .then((response) =>{
+                //console.log(response);
+                window.location.reload();
+            })
+            .catch(function (error) {
+                console.log(error);
+        });
+    }
+
     //action templates
     const actionButtonTemplates=(data)=>{
         return (
@@ -44,12 +82,11 @@ export default function IssueTable(){
                 <Button id='editBtn' className="p-button-raised p-button-rounded p-button-success"
                 icon="bi bi-pencil-square" tooltip="Edit issue" onClick={()=>{redirectToEditUrl(data.issue_id)}}/>
                 <Button id='deleteBtn'  className="p-button-raised p-button-rounded p-button-danger"
-                icon="pi pi-trash" tooltip="Delete issue"/>
-
+                icon="pi pi-trash" tooltip="Delete issue" onClick={()=>{deleteConfirm(data.issue_id)}}/>
                {
                     canProvideSolution ?
                     <Button id='solutionBtn'  className="p-button-raised p-button-rounded p-button-secondary"
-                    icon="bi bi-list-task" tooltip="provide solution" onClick={()=>{redirectToSolutionUrl(data.issue_id)}} />: null
+                    icon="bi bi-lightbulb" tooltip="provide solution" onClick={()=>{redirectToSolutionUrl(data.issue_id)}} />: null
                }
            </div>
         )
@@ -59,6 +96,7 @@ export default function IssueTable(){
     return (
         <div className='container'>
             <div className="card shadow">
+            <ConfirmDialog />
                 <DataTable value={issues} size="small"  stripedRows responsiveLayout="scroll" paginator
                 paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" rows={10} rowsPerPageOptions={[10,20,50]}>
