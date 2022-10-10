@@ -51,6 +51,8 @@ Open http://127.0.0.1:8000 to view it in your browser.
 
 ### Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](/public/assets/images/screencapture1.png)
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](/public/assets/images/screencapture2.png)
+
+![App Screenshot](/public/assets/images/screencapture3.png)
